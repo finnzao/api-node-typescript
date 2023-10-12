@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { ProdutosControler } from './../controllers/produtos/'
+
 
 
 const router = Router()
@@ -10,13 +12,6 @@ router.get('/', (_, res) => {
 })
 
 
-router.post('/teste', (req, res) => {
-    console.log(req.params);
+router.post('/produtos',ProdutosControler.createBodyValidator,ProdutosControler.create)
 
-    return res.send(req.body);
-
-})
-
-
-
-export {router}
+export { router }

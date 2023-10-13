@@ -1,6 +1,6 @@
 import * as create from './Create';
 
 
-export const ProdutosControler={
+export const ProdutosController={
     ...create,
 };

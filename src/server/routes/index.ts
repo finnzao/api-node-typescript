@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ProdutosControler } from './../controllers/produtos/'
+import { ProdutosController } from './../controllers/produtos/'
 
 
 
@@ -12,6 +12,6 @@ router.get('/', (_, res) => {
 })
 
 
-router.post('/produtos',ProdutosControler.createBodyValidator,ProdutosControler.create)
+router.post('/produtos',ProdutosController.createValidation,ProdutosController.create)
 
 export { router }

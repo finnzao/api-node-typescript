@@ -8,38 +8,23 @@ interface IProduto {
     price: number,
 
 }
-
-
-
-const bodyValidation: yup.Schema<IProduto> = yup.object().shape({
-    nome: yup.string().required().min(3),
-    price: yup.number().required().min(2)
-})
 //RequestHandler é um interface que já tem os paramentros para req,res e next
 //Next é função para executar o proximo handler
-export const createBodyValidator:RequestHandler = async (req,res,next)=>{
-    try {
-        await bodyValidation.validate(req.body, { abortEarly: false });
-        return next()
-    } catch (error) {
-        const yupError = error as yup.ValidationError;
-        //Record-> Criar um modelo de objeto
-        const erros: Record<string, string> = {};
+interface IFilter {
+    filter?: string;
+    limite?:number
+}
+export const createValidation = validation((getSchema) => ({
+    body: getSchema<IProduto>(yup.object().shape({
+        nome: yup.string().required().min(3),
+        price: yup.number().required().min(2)
+    })),
 
-        yupError.inner.forEach(error => {
-            if (!error.path) return;
-            erros[error.path] = error.message
-        })
+    query: getSchema<IFilter>(yup.object().shape({
+        filter: yup.string().required().min(3)
+    })),
 
-        return res.status(StatusCodes.BAD_REQUEST).json({ validationErrors: erros });
-    }
-};
-
-
-
-
-export const createValidate = validation()
-
+}));
 
 export const create = async (req: Request<{}, {}, IProduto>, res: Response) => {
     console.log(req.body)

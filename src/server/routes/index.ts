@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ProdutosController } from './../controllers/produtos/'
+import { ProdutosController } from './../controllers/produtos/';
 
 
 
@@ -12,6 +12,10 @@ router.get('/', (_, res) => {
 })
 
 
+router.get('/produtos',ProdutosController.getAllValidation,ProdutosController.getAll)
+router.get('/produtos/:id',ProdutosController.getByIdValidation,ProdutosController.getById)
 router.post('/produtos',ProdutosController.createValidation,ProdutosController.create)
+router.put('/produtos/:id',ProdutosController.updateByIdValidation,ProdutosController.updateById)
+router.delete('/produtos/:id',ProdutosController.deleteValidation,ProdutosController.deleteById)
 
 export { router }

@@ -1,7 +1,7 @@
-import { Request, RequestHandler, Response } from "express"
-import { StatusCodes } from "http-status-codes"
+import { Request, RequestHandler, Response } from "express";
 import * as yup from 'yup';
 import { validation } from "../../shared/middleware";
+import { StatusCodes } from "http-status-codes";
 
 interface IProduto {
     nome: string,
@@ -21,12 +21,12 @@ export const createValidation = validation((getSchema) => ({
     })),
 
     query: getSchema<IFilter>(yup.object().shape({
-        filter: yup.string().required().min(3)
+        filter: yup.string().min(3).optional()
     })),
 
 }));
 
 export const create = async (req: Request<{}, {}, IProduto>, res: Response) => {
     console.log(req.body)
-    res.send('Create')
+    return res.status(StatusCodes.CREATED).send('Não implementado');
 }

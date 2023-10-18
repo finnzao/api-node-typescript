@@ -1,24 +1,31 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - Create', () => {
-    
-    
-    it('Delete by id', async () => {
+describe('Produtos - DeleteById', () => {
+
+
+    it('Apagar registro', async () => {
 
         const res1 = await testeServer
-        .delete('/produtos/123')
+            .post('/produtos/')
+            .send({
+                nome: 'Pao',
+                price: 20
+            });
+        expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 
-        expect(res1.statusCode).toEqual(StatusCodes.OK)
-        expect(typeof(res1.body)).toEqual('object')
+        const resApagada = await testeServer.delete(`'/produtos/${res1.body}'`).send()
+        
+        expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT)
+
     })
 
-    it('Delete por ID precisa ser mais maior 0',async()=>{
+    it('Delete por ID precisa ser mais maior 0', async () => {
 
         const res2 = await testeServer
-        .delete('/produtos/999999')
-        .send()
-        
+            .delete('/produtos/999999')
+            .send()
+
         expect(res2.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR)
         expect(res2.body).toHaveProperty('errors.default')
     })

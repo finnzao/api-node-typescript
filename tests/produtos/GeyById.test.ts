@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - Create', () => {
+describe('Produtos - Get by ID', () => {
     
     
     it('Criar Produto', async () => {

@@ -23,5 +23,5 @@ export const deleteById = async (req: Request<IParamProps>, res: Response) => {
         }
     })
     console.log(req.params)
-    return res.status(StatusCodes.OK).send('Não implementado!')
+    return res.status(StatusCodes.NO_CONTENT).send('Não implementado!')
 } 

@@ -20,7 +20,15 @@ export const getAllValidation = validation((getSchema) => ({
     })),
 }));
 
-export const getAll = async (req: Request<{}, {}, {},IQueryProps>, res: Response) => {
+export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
+
+    res.setHeader('access-control-expose-headers', 'x-total-count');
+    res.setHeader('x-total-count', 1)
     console.log(req.query)
-    return res.status(StatusCodes.OK).send('Não implementado!')
+    return res.status(StatusCodes.OK).json([
+        {
+            id: 1,
+            nome: 'Pao de milho'
+        }
+    ]);
 } 

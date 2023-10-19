@@ -18,5 +18,8 @@ export const getByIdValidation = validation((getSchema) => ({
 
 export const getById = async (req: Request<IParamProps>, res: Response) => {
     console.log(req.params)
-    return res.status(StatusCodes.OK).send('Não implementado!')
+    return res.status(StatusCodes.OK).json({
+        id:req.params.id,
+        nome:'Pão com alho'
+    })
 } 

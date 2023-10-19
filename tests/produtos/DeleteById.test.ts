@@ -7,18 +7,22 @@ describe('Produtos - DeleteById', () => {
     it('Apagar registro', async () => {
 
         const res1 = await testeServer
-            .post('/produtos/')
-            .send({
-                nome: 'Pao',
-                price: 20
-            });
+        .post('/produtos')
+        .send({
+            nome: 'Pao de alho',
+            price:204
+        });
+
+
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 
-        const resApagada = await testeServer.delete(`'/produtos/${res1.body}'`).send()
+        const resApagada = await testeServer
+        .delete(`/produtos/${res1.body.id}`)
+        .send();
         
         expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT)
 
-    })
+    });
 
     it('Delete por ID precisa ser mais maior 0', async () => {
 

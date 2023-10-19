@@ -4,7 +4,7 @@ import { testeServer } from "../jest.setup";
 describe('Produtos - Get by ID', () => {
     
     
-    it('Criar Produto', async () => {
+    it('Gey By ID', async () => {
 
         const res1 = await testeServer
         .get('/produtos/123')

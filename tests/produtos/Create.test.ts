@@ -22,11 +22,11 @@ describe('Produtos - Create', () => {
         const res2 = await testeServer
         .post('/produtos')
         .send({
-            nome: 'Pao',
+            nome: 'P',
             price:20
         });
 
-
-        expect(res2.statusCode).toEqual(StatusCodes.CREATED)
+        expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+        expect(res2.body).toHaveProperty('validationErrors.body.nome');
     })
 });

@@ -26,5 +26,5 @@ export const updateByIdValidation = validation((getSchema) => ({
 export const updateById = async (req: Request<IParamProps>, res: Response) => {
     console.log(req.params);
     console.log(req.body);
-    return res.status(StatusCodes.OK).send('Não implementado!')
+    return res.status(StatusCodes.NO_CONTENT).send();
 } 

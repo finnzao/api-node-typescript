@@ -11,7 +11,7 @@ describe('Produtos - Update by ID', () => {
                 nome: "Alterando nome do produto"
             })
 
-        expect(res1.statusCode).toEqual(StatusCodes.OK)
+        expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)
         expect(typeof (res1.body)).toEqual('object')
     })
 

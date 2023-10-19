@@ -7,14 +7,14 @@ describe('Produtos - GetAll', () => {
     it('Buscar todos os registros', async () => {
 
         const res1 = await testeServer
-            .post('/produtos/')
+            .post('/produtos')
             .send({
-                nome: 'Pao',
-                price: 240
+                nome: 'aaaaa',
+                price: 2402
             });
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 
-        const resBuscando = await testeServer.get('/cidades').send();
+        const resBuscando = await testeServer.get('/produtos').send();
         
         
         expect (Number(resBuscando.header['x-total-count'])).toBeGreaterThan(0);

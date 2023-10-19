@@ -22,6 +22,6 @@ export const deleteById = async (req: Request<IParamProps>, res: Response) => {
             default: 'Registro não encontrado'
         }
     })
-    console.log(req.params)
-    return res.status(StatusCodes.NO_CONTENT).send('Não implementado!')
+    
+    return res.status(StatusCodes.NO_CONTENT).send()
 } 

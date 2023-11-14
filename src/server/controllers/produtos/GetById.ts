@@ -20,6 +20,6 @@ export const getById = async (req: Request<IParamProps>, res: Response) => {
     console.log(req.params)
     return res.status(StatusCodes.OK).json({
         id:req.params.id,
-        nome:'Pão com alho'
+        name:'Pão com alho'
     })
 } 

@@ -9,8 +9,9 @@ describe('Produtos - Create', () => {
         const res1 = await testeServer
         .post('/produtos')
         .send({
-            nome: 'Pastel',
-            price:20
+            name: 'Pastel',
+            price:20,
+            img:'http:img'
         });
 
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
@@ -22,11 +23,12 @@ describe('Produtos - Create', () => {
         const res2 = await testeServer
         .post('/produtos')
         .send({
-            nome: 'P',
-            price:20
+            name: 'P',
+            price:20,
+            img:'http:img'
         });
 
         expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-        expect(res2.body).toHaveProperty('validationErrors.body.nome');
+        expect(res2.body).toHaveProperty('validationErrors.body.name');
     })
 });

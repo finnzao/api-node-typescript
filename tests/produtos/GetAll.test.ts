@@ -9,8 +9,9 @@ describe('Produtos - GetAll', () => {
         const res1 = await testeServer
             .post('/produtos')
             .send({
-                nome: 'aaaaa',
-                price: 2402
+                name: 'aaaaa',
+                price: 2402,
+                img:'http:img'
             });
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 

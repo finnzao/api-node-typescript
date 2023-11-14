@@ -8,7 +8,9 @@ describe('Produtos - Update by ID', () => {
 
         const res1 = await testeServer
             .put('/produtos/123').send({
-                nome: "Alterando nome do produto"
+                name: "Alterando nome do produto",
+                price: 20,
+                img: "http:img",
             })
 
         expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)
@@ -28,7 +30,7 @@ describe('Produtos - Update by ID', () => {
 
         const res1 = await testeServer
             .put('/produtos/123').send({
-                nome: "1"
+                name: "1"
             })
 
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST)

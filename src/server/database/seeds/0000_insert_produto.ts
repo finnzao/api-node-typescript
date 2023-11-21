@@ -52,7 +52,7 @@ export const seed = async (knex: Knex) => {
         { name: 'Produto 39', price: 100.72, img: 'htpp:img' },
     ]
 
-    const [{ count }] = await knex(ETableNames.user).count<[{ count: number }]>('* as count');
+    const [{ count }] = await knex(ETableNames.produto).count<[{ count: number }]>('* as count');
 
     if (!Number.isInteger(count) || Number(count) > 0) return;
     const produtosToInsert = produtosSeedOne.map(dateProduto => ({
@@ -60,7 +60,7 @@ export const seed = async (knex: Knex) => {
         price: dateProduto.price,
         img: dateProduto.img
     }))
-    await knex(ETableNames.user).insert(produtosToInsert)
+    await knex(ETableNames.produto).insert(produtosToInsert)
 
 
 

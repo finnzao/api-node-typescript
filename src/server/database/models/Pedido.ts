@@ -1,9 +1,7 @@
 export interface IPedido {
     id: number,
-    name: string,
+    info: string,
     total: number,
     discount: number,
     status: string,
-    createdAt:string,
-    updatedAt:string
 }

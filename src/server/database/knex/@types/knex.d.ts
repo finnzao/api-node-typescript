@@ -1,10 +1,12 @@
 import { IProduto } from "../../models"
+import { IPedido } from "../../models"
+import { IUser } from "../../models"
 
 declare module 'knex/types/tables' {
 
     interface Tables {
         produto: IProduto
-        //Pedidos : IPedidos
-        //usuario : IUsuario
+        edido: IPedido
+        user: IUser
     }
 }

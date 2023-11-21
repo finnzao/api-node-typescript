@@ -1,10 +1,10 @@
 import { Knex } from "../../knex";
-import { IProduto } from "../../models";
+import { IPedido } from "../../models";
 import { ETableNames } from "../../ETableNames";
 
-export const create = async (produto: Omit<IProduto, 'id'>) => {
+export const create = async (pedido: Omit<IPedido, 'id'>) => {
     try {
-        const [result] = await Knex(ETableNames.produto).insert(produto).returning('id');
+        const [result] = await Knex(ETableNames.pedido).insert(pedido).returning('id');
 
 
         if (typeof result === 'object') {

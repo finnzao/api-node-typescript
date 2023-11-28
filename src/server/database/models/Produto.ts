@@ -2,9 +2,7 @@ export interface IProduto {
     id: number,
     name: string,
     price: number,
-    sumary: string
+    summary: string
     img: string,
     quantity: number,
-    createdAt: string,
-    updatedAt: string
 }

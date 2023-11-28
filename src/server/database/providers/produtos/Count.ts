@@ -6,7 +6,7 @@ export const count = async (filter = ''): Promise<number | Error> => {
         const [{ count }] = await Knex(ETableNames.produto)
             .where('nome', 'like', `%${filter}%`)
             .count<[{ count: number }]>('* as count');
-
+            
         if (Number.isInteger(Number(count))) return Number(count);
 
         return new Error('Erro ao consultar a quantidade total de registros');

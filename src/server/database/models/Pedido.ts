@@ -4,4 +4,5 @@ export interface IPedido {
     total: number,
     discount: number,
     status: string,
+    userId: number
 }

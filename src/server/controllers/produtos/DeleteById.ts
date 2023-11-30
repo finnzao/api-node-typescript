@@ -29,4 +29,5 @@ export const deleteById = async (req: Request<IParamProps>, res: Response) => {
     const result = await ProdutosProviders.deleteById(req.params.id);
 
     return res.status(StatusCodes.NO_CONTENT).json(result)
+
 } 

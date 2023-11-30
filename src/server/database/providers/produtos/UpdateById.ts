@@ -12,7 +12,7 @@ export const updateById = async (id: number, produto: Omit<IProduto, 'id'>): Pro
 
     } catch (error) {
         console.log(error)
-        return Error('Erro ao deletar');
+        return new Error('Erro ao consultar os registros');
     }
 
 }

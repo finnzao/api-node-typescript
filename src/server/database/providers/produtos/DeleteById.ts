@@ -13,7 +13,7 @@ export const deleteById  = async (id: number): Promise<void | Error> => {
 
     } catch (error) {
         console.log(error)
-        return Error('Erro ao deletar');
+        return new Error('Erro ao consultar os registros');
     }
 
 }

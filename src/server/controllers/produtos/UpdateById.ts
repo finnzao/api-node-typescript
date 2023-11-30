@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IProduto } from "../../database/models";
-
+import { ProdutosProviders } from "../../database/providers/produtos";
 //RequestHandler é um interface que já tem os paramentros para req,res e next
 //Next é função para executar o proximo handler
 
@@ -27,5 +27,21 @@ export const updateByIdValidation = validation((getSchema) => ({
 }));
 
 export const updateById = async (req: Request<IParamProps>, res: Response) => {
-    return res.status(StatusCodes.NO_CONTENT).send();
+    if (!req.params.id) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: 'O parâmetro "id" precisa ser informado.'
+            }
+        });
+    }
+    const result = ProdutosProviders.updateById(req.params.id, req.body)
+    if (result instanceof Error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message
+            }
+        });
+    }
+
+    return res.status(StatusCodes.NO_CONTENT).json(result);
 } 

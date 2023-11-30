@@ -11,7 +11,7 @@ export const getById = async (id: number): Promise<IProduto | Error> => {
         return new Error('ID não encontrado');
     } catch (error) {
         console.log(error);
-        return new Error('Erro consulta');
+        return new Error('Erro ao consultar os registros');
     }
 
 }

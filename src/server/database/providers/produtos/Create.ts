@@ -15,7 +15,7 @@ export const create = async (produto: Omit<IProduto, 'id'>) => {
         return Error('Erro ao cadastrar');
     } catch (error) {
         console.log(error)
-        return Error('Erro ao cadastrar');
+        return new Error('Erro ao consultar os registros');
     }
 
 }

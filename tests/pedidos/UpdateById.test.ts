@@ -8,9 +8,11 @@ describe('Produtos - Update by ID', () => {
 
         const res1 = await testeServer
             .put('/produtos/123').send({
-                name: "Alterando nome do produto",
+                name: 'Alterando nome',
                 price: 20,
-                img: "http:img",
+                img: 'http:img',
+                summary: "new info about produt",
+                quantity: 80
             })
 
         expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)

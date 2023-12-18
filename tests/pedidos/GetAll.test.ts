@@ -1,23 +1,23 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - GetAll', () => {
+describe('Pedidos - GetAll', () => {
 
 
     it('Buscar todos os registros', async () => {
 
         const res1 = await testeServer
-            .post('/produtos')
+            .post('/pedidos')
             .send({
-                name: 'Pastel',
-                price: 20,
-                img: 'http:img',
-                summary: "new info about produt",
-                quantity: 80
+                info: "Pedido number 1",
+                total: 305.20,
+                discount: 90,
+                status: "string",
+                userId: 1
             });
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 
-        const resBuscando = await testeServer.get('/produtos').send();
+        const resBuscando = await testeServer.get('/pedidos').send();
 
 
         expect(Number(resBuscando.header['x-total-count'])).toBeGreaterThan(0);

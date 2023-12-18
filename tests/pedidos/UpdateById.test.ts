@@ -1,18 +1,18 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - Update by ID', () => {
+describe('Pedidos - Update by ID', () => {
 
 
-    it('Alterando produto', async () => {
+    it('Alterando pedidos', async () => {
 
         const res1 = await testeServer
-            .put('/produtos/123').send({
-                name: 'Alterando nome',
-                price: 20,
-                img: 'http:img',
-                summary: "new info about produt",
-                quantity: 80
+            .put('/pedidos/123').send({
+                info: "Pedidos number 1",
+                total: 305.20,
+                discount: 90,
+                status: "string",
+                userId: 1
             })
 
         expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)
@@ -22,7 +22,7 @@ describe('Produtos - Update by ID', () => {
     it('Get By ID precisa ser mais que 0', async () => {
 
         const res2 = await testeServer
-            .put('/produtos/0');
+            .put('/pedidos/0');
 
 
         expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST)
@@ -31,8 +31,8 @@ describe('Produtos - Update by ID', () => {
     it('Precisa de um nome ao menos com 3 caracteres', async () => {
 
         const res1 = await testeServer
-            .put('/produtos/123').send({
-                name: "1"
+            .put('/pedidos/123').send({
+                info: "1"
             })
 
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST)

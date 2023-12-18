@@ -1,24 +1,24 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - Get by ID', () => {
-    
-    
+describe('Pedido - Get by ID', () => {
+
+
     it('Gey By ID', async () => {
 
         const res1 = await testeServer
-        .get('/produtos/123')
+            .get('/pedidos/1')
 
         expect(res1.statusCode).toEqual(StatusCodes.OK)
-        expect(typeof(res1.body)).toEqual('object')
+        expect(typeof (res1.body)).toEqual('object')
     })
 
-    it('Get By ID precisa ser mais que 0',async()=>{
+    it('Get By ID precisa ser mais que 0', async () => {
 
         const res2 = await testeServer
-        .get('/produtos/0');
+            .get('/pedidos/0');
 
-        
+
         expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST)
     })
 

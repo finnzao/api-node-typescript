@@ -20,7 +20,6 @@ export const createValidation = validation((getSchema) => ({
         info: yup.string().required().min(3),
         total: yup.number().required().min(2),
         status: yup.string().required().min(2),
-        userId: yup.number().integer().required(),
         discount: yup.number().required().min(2),
     })),
 }));

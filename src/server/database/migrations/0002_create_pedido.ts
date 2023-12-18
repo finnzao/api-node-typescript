@@ -8,7 +8,6 @@ export async function up(knex: Knex) {
         table.float('total', 10).index();
         table.float('discount', 10).index();
         table.string('status', 10).index();
-        table.bigInteger('userId').unique().references('id').inTable(ETableNames.produto).onUpdate('CASCADE').onDelete('SET NULL');
         table.comment('Tabela usada para armazena pedidos no sistema ')
     }).then(() => {
         console.log(`Create table ${ETableNames.pedido}`)

@@ -1,39 +1,39 @@
 import { StatusCodes } from "http-status-codes";
 import { testeServer } from "../jest.setup";
 
-describe('Produtos - Create', () => {
+describe('Pedido - Create', () => {
 
 
-    it('Criar Produto', async () => {
+    it('Criar Pedido', async () => {
 
         const res1 = await testeServer
-            .post('/produtos')
+            .post('/pedidos')
             .send({
-                name: 'Pastel',
-                price: 20,
-                img: 'http:img',
-                summary: "new info about produt",
-                quantity: 80
+                info: "pedido number 1",
+                total: 305.20,
+                discount: 90,
+                status: "string",
+                userId: 2
             });
 
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
-        expect(typeof (res1.body)).toEqual('object')
+        expect(typeof (res1.body)).toEqual('number')
     })
 
-    it('Não pode criar produto com nome pequeno', async () => {
+    it('Não pode criar pedido com nome pequeno', async () => {
 
         const res2 = await testeServer
-            .post('/produtos')
+            .post('/pedidos')
             .send({
-                name: 'P',
-                price: 20,
-                img: 'http:img',
-                summary: "new info about produt",
-                quantity: 80
+                info: "p",
+                total: 305.20,
+                discount: 90,
+                status: "string",
+                userId: 1
 
             });
 
         expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-        expect(res2.body).toHaveProperty('validationErrors.body.name');
+        expect(res2.body).toHaveProperty('validationErrors.body');
     })
 });

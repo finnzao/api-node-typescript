@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IUser } from "../../database/models";
+import { UserProviders } from "../../database/providers/user";
 
 //RequestHandler é um interface que já tem os paramentros para req,res e next
 //Next é função para executar o proximo handler
@@ -35,7 +36,14 @@ export const updateById = async (req: Request<IParamProps>, res: Response) => {
             }
         });
     }
+    const result = await UserProviders.updateById(req.params.id, req.body);
+    if (result instanceof Error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message
+            }
+        });
+    }
 
-
-    return res.status(StatusCodes.NO_CONTENT).json(1);
+    return res.status(StatusCodes.NO_CONTENT).json(result);
 } 

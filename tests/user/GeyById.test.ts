@@ -7,10 +7,20 @@ describe('user - Get by ID', () => {
     it('Gey By ID', async () => {
 
         const res1 = await testeServer
-            .get('/user/1')
+        .post('/user')
+        .send({
+            name: "user4",
+            mobile: "202020",
+            email: "emailteste@outlook.com",
+            password: "password123",
+            admin: false
+        });
 
-        expect(res1.statusCode).toEqual(StatusCodes.OK)
-        expect(typeof (res1.body)).toEqual('object')
+    expect(res1.statusCode).toEqual(StatusCodes.CREATED)
+        const res2 = await testeServer
+            .get(`/user/${res1.body}`)
+
+        expect(res2.statusCode).toEqual(StatusCodes.OK)
     })
 
     it('Get By ID precisa ser mais que 0', async () => {

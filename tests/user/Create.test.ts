@@ -10,7 +10,7 @@ describe('User - Create', () => {
             .post('/user')
             .send({
                 name: "user4",
-                mobile: 20,
+                mobile: "202020",
                 email: "emailteste@outlook.com",
                 password: "password123",
                 admin: false

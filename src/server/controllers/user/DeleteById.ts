@@ -25,6 +25,15 @@ export const deleteById = async (req: Request<IParamProps>, res: Response) => {
             }
         });
     }
-    const result = await UserProviders.deleteById
-    return res.status(StatusCodes.NO_CONTENT).send()
+
+    const result = UserProviders.deleteById(req.params.id)
+
+    if (result instanceof Error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            erros: {
+                default: result.message
+            }
+        })
+    }
+    return res.status(StatusCodes.NO_CONTENT).json(result)
 } 

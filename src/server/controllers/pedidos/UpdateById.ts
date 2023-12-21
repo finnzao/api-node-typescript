@@ -34,7 +34,7 @@ export const updateById = async (req: Request<IParamProps>, res: Response) => {
             }
         });
     }
-    const result = PedidosProviders.updateById(req.params.id, req.body)
+    const result = await PedidosProviders.updateById(req.params.id, req.body)
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {

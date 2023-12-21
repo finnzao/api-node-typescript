@@ -9,8 +9,8 @@ describe('USER - DeleteById', () => {
         const res1 = await testeServer
             .post('/user')
             .send({
-                name: "user4",
-                mobile: 20,
+                name: "usertest",
+                mobile: "202020",
                 email: "emailteste@outlook.com",
                 password: "password123",
                 admin: false
@@ -20,7 +20,7 @@ describe('USER - DeleteById', () => {
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
 
         const resApagada = await testeServer
-            .delete(`/user/${res1.body.id}`)
+            .delete(`/user/${res1.body}`)
             .send();
 
         expect(resApagada.statusCode).toEqual(StatusCodes.NO_CONTENT)
@@ -30,11 +30,10 @@ describe('USER - DeleteById', () => {
     it('Delete por ID precisa ser mais maior 0', async () => {
 
         const res2 = await testeServer
-            .delete('/user/999999')
+            .delete('/user/0')
             .send()
 
-        expect(res2.statusCode).toEqual(StatusCodes.NO_CONTENT)
-        expect(res2.body).toHaveProperty('errors.default')
+        expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST)
     })
 
 

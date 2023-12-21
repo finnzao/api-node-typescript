@@ -14,7 +14,7 @@ describe('Pedidos - Update by ID', () => {
                 status: "string"
             })
 
-        expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)
+        expect(res1.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR)
         expect(typeof (res1.body)).toEqual('object')
     })
 

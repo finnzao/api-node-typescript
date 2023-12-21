@@ -4,11 +4,11 @@ import { testeServer } from "../jest.setup";
 describe('User - Update by ID', () => {
 
 
-    it('Alterando Usuario', async () => {
+    it('Alterando pedidos com ID inexistente', async () => {
 
                
         const res1 = await testeServer
-            .put('/user/123').send({
+            .put('/user/999999999').send({
                 name: "AlterandoUser",
                 mobile: 97403150,
                 email: "emailteste@outlook.com",
@@ -16,7 +16,7 @@ describe('User - Update by ID', () => {
                 admin: false
             })
 
-        expect(res1.statusCode).toEqual(StatusCodes.NO_CONTENT)
+        expect(res1.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR)
         expect(typeof (res1.body)).toEqual('object')
     })
 

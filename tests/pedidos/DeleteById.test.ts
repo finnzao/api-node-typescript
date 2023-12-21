@@ -26,7 +26,7 @@ describe('Pedido - DeleteById', () => {
 
     });
 
-    it('Delete por ID precisa ser mais maior 0', async () => {
+    it('Deletando id inexistente', async () => {
 
         const res2 = await testeServer
             .delete('/pedidos/999999')
@@ -34,6 +34,13 @@ describe('Pedido - DeleteById', () => {
         expect(res2.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR)
         expect(res2.body).toHaveProperty('errors.default')
     })
+    
+    it('Deletando ID menor que 1', async () => {
 
+        const res2 = await testeServer
+            .delete('/pedidos/0')
+            .send()
+        expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST)
+    })
 
 });

@@ -13,7 +13,6 @@ describe('Pedido - Create', () => {
                 total: 305.20,
                 discount: 90,
                 status: "string",
-                userId: 2
             });
 
         expect(res1.statusCode).toEqual(StatusCodes.CREATED)
@@ -29,8 +28,6 @@ describe('Pedido - Create', () => {
                 total: 305.20,
                 discount: 90,
                 status: "string",
-                userId: 1
-
             });
 
         expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST);

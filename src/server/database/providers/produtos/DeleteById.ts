@@ -12,7 +12,6 @@ export const deleteById  = async (id: number): Promise<void | Error> => {
         return new Error('Erro ao apagar o registro.')
 
     } catch (error) {
-        console.log(error)
         return new Error('Erro ao consultar os registros');
     }
 

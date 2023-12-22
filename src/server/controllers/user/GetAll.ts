@@ -24,6 +24,7 @@ export const getAllValidation = validation((getSchema) => ({
 }));
 
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
+    
     const result = await UserProviders.getAll(req.query.page || 1, req.query.limit || 7, req.query.filter || '', Number(req.query.id));
     const count = await UserProviders.count(req.query.filter);
 

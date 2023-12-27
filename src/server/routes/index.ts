@@ -8,7 +8,7 @@ import { PedidosController } from './../controllers/';
 const router = Router()
 
 router.get('/', (_, res) => {
-    return res.send('Olá,DEV!');
+    return res.send('');
 
 })
 
@@ -19,11 +19,10 @@ router.get('/produtos/:id', ProdutosController.getByIdValidation, ProdutosContro
 router.put('/produtos/:id', ProdutosController.updateByIdValidation, ProdutosController.updateById)
 router.delete('/produtos/:id', ProdutosController.deleteValidation, ProdutosController.deleteById)
 //User
-router.post('/user', UserController.createValidation, UserController.create)
-router.get('/user', UserController.getAllValidation, UserController.getAll)
-router.get('/user/:id', UserController.getByIdValidation, UserController.getById)
-router.put('/user/:id', UserController.updateByIdValidation, UserController.updateById)
-router.delete('/user/:id', UserController.deleteValidation, UserController.deleteById)
+//router.post('/login', UserController.signUpValidation, UserController.signIn);
+router.post('/signUp', UserController.signUpValidation, UserController.signUp);
+router.post('/signIn', UserController.signInValidation, UserController.signIn);
+router.post('/email', UserController.GetByEmailValidation, UserController.GetByEmail);
 //Pedido
 router.post('/pedidos/', PedidosController.createValidation, PedidosController.create)
 router.get('/pedidos', PedidosController.getAllValidation, PedidosController.getAll)

@@ -22,7 +22,8 @@ router.delete('/produtos/:id', ProdutosController.deleteValidation, ProdutosCont
 //router.post('/login', UserController.signUpValidation, UserController.signIn);
 router.post('/signUp', UserController.signUpValidation, UserController.signUp);
 router.post('/signIn', UserController.signInValidation, UserController.signIn);
-router.post('/email', UserController.GetByEmailValidation, UserController.GetByEmail);
+router.get('/email', UserController.GetByEmail);
+
 //Pedido
 router.post('/pedidos/', PedidosController.createValidation, PedidosController.create)
 router.get('/pedidos', PedidosController.getAllValidation, PedidosController.getAll)

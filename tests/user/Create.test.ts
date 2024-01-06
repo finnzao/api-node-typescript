@@ -7,7 +7,7 @@ describe('User - Create', () => {
     it('Criar Usuario', async () => {
 
         const res1 = await testeServer
-            .post('/user')
+            .post('/signUp')
             .send({
                 name: "user4",
                 mobile: "202020",
@@ -23,7 +23,7 @@ describe('User - Create', () => {
     it('Não pode criar usuario com nome pequeno', async () => {
 
         const res2 = await testeServer
-            .post('/user')
+            .post('/signUp')
             .send({
                 name: "p",
                 mobile: 20,

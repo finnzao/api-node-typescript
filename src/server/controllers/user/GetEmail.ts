@@ -37,5 +37,5 @@ export const GetByEmail = async (req: Request<IParamProps>, res: Response) => {
         });
     }
 
-    return res.status(StatusCodes.OK).json(true);
+    return res.status(StatusCodes.OK).json(result);
 } 

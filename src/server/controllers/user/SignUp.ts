@@ -3,7 +3,6 @@ import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
 
 import { UserProviders } from '../../database/providers/user';
-import { UserController } from '.';
 import { validation } from '../../shared';
 import { IUser } from '../../database/models';
 import { PasswordCrypto } from '../../services/PasswordCrypto';
@@ -25,9 +24,16 @@ export const signUpValidation = validation((getSchema) => ({
 
 export const signUp = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
     //EMAILVALIDATION ERROR
-    const emailValidation = await UserController.GetByEmail(req.body)
-    if(emailValidation === true){
-        
+    const emailExisnt = await UserProviders.getByEmail(req.body.email)
+    console.log(typeof(emailExisnt))
+    if (emailExisnt instanceof Error) {
+
+    } else {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: "Email já cadastrado"
+            }
+        })
     }
     const result = await UserProviders.create(req.body);
     if (result instanceof Error) {

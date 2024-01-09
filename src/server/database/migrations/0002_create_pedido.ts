@@ -6,7 +6,7 @@ export async function up(knex: Knex) {
         table.bigIncrements('id').primary().index();
         table.string('info', 500).index();
         table.float('total', 10).index();
-        table.float('discount', 10).index();
+        table.float('discount').index();
         table.string('status', 10).index();
         table.comment('Tabela usada para armazena pedidos no sistema ')
     }).then(() => {

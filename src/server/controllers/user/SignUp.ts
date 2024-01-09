@@ -7,7 +7,7 @@ import { validation } from '../../shared';
 import { IUser } from '../../database/models';
 import { PasswordCrypto } from '../../services/PasswordCrypto';
 
-interface IBodyProps extends Omit<IUser, 'id'> { }
+interface IBodyProps extends Omit<IUser, 'id' | 'admin'> { }
 
 export const signUpValidation = validation((getSchema) => ({
     body: getSchema<IBodyProps>(yup.object().shape({
@@ -15,7 +15,7 @@ export const signUpValidation = validation((getSchema) => ({
         mobile: yup.string().required().min(4).nonNullable(),
         email: yup.string().required().min(10).nonNullable(),
         password: yup.string().required().min(5),
-        admin: yup.boolean().required(),
+
     })),
 
 }));
@@ -25,7 +25,6 @@ export const signUpValidation = validation((getSchema) => ({
 export const signUp = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
     //EMAILVALIDATION ERROR
     const emailExisnt = await UserProviders.getByEmail(req.body.email)
-    console.log(typeof(emailExisnt))
     if (emailExisnt instanceof Error) {
 
     } else {
@@ -35,7 +34,7 @@ export const signUp = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
             }
         })
     }
-    const result = await UserProviders.create(req.body);
+    const result = await  UserProviders.create(req.body );
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {

@@ -8,7 +8,7 @@
     "start": "npx ts-node-dev src/index.ts ",
     "build": "tsc",
     "postinstall": "tsc",
-    "knex:migrate": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:latest",
+    "knex:migrate": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:rollback --all",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:rollback ",
     "knex:seed": "knex --knexfile ./src/server/database/knex/Environments.ts seed:run ",

@@ -19,6 +19,7 @@ export const create = async (user: Omit<IUser, 'id' | 'admin'>): Promise<number 
         }
         return Error('Erro ao cadastrar Usuário');
     } catch (error) {
+        console.log(error)
         return Error('Erro ao cadastrar');
     }
 

@@ -12,7 +12,7 @@ interface IBodyProps extends Omit<IUser, 'id' | 'admin'> { }
 export const signUpValidation = validation((getSchema) => ({
     body: getSchema<IBodyProps>(yup.object().shape({
         name: yup.string().required().min(4),
-        mobile: yup.string().required().min(4).nonNullable(),
+        mobile: yup.string().required().min(8).nonNullable(),
         email: yup.string().required().min(10).nonNullable(),
         password: yup.string().required().min(5),
 
@@ -25,15 +25,13 @@ export const signUpValidation = validation((getSchema) => ({
 export const signUp = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
     //EMAILVALIDATION ERROR
     const emailExisnt = await UserProviders.getByEmail(req.body.email)
-    if (emailExisnt instanceof Error) {
-
-    } else {
+    if (!(emailExisnt instanceof Error)) {
         return res.status(StatusCodes.BAD_REQUEST).json({
             errors: {
                 default: "Email já cadastrado"
             }
         })
-    }
+    } 
     const result = await  UserProviders.create(req.body );
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

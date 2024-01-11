@@ -36,7 +36,7 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
 
     const passwordMatch = await PasswordCrypto.verifyPassword(password, result.password)
 
-    if (!passwordMatch) {
+    if (!passwordMatch) { 
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors: {
                 default: 'Password invalido'

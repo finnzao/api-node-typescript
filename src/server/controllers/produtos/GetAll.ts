@@ -37,7 +37,7 @@ export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Respons
             errors: { default: count.message }
         });
     }
-
+    //console.log(req.headers.idUser)
     res.setHeader('access-control-expose-headers', 'x-total-count');
     res.setHeader('x-total-count', count);
 

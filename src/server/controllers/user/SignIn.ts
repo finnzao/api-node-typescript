@@ -6,6 +6,7 @@ import { UserProviders } from '../../database/providers/user';
 import { validation } from '../../shared';
 import { IUser } from '../../database/models';
 import { PasswordCrypto } from '../../services/PasswordCrypto';
+import { JWTService } from '../../services/JWTService';
 
 interface IBodyProps extends Omit<IUser, 'id' | 'name' | 'admin' | 'mobile'> { }
 
@@ -24,9 +25,9 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
     const { email, password } = req.body;
 
 
-    const result = await UserProviders.getByEmail(email)
+    const user = await UserProviders.getByEmail(email)
 
-    if (result instanceof Error) {
+    if (user instanceof Error) {
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors: {
                 default: 'Email invalido'
@@ -34,15 +35,27 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
         })
     }
 
-    const passwordMatch = await PasswordCrypto.verifyPassword(password, result.password)
+    const passwordMatch = await PasswordCrypto.verifyPassword(password, user.password)
 
-    if (!passwordMatch) { 
+    if (!passwordMatch) {
         return res.status(StatusCodes.UNAUTHORIZED).json({
             errors: {
                 default: 'Password invalido'
             }
         })
     } else {
-        return res.status(StatusCodes.OK).json({ acessToken: 'token.test' });
+
+
+        const acessToken = JWTService.sign({ uid: user.id })
+
+        if (acessToken === 'JWT_SECRET_NOT_FOUND') {
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                erros: {
+                    default: 'Erro ao gerar o token de acesso'
+                }
+            })
+        }
+
+        return res.status(StatusCodes.OK).json({ acessToken });//acessToken:acessToken
     }
 }

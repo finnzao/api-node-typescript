@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import { UserProviders } from '../../database/providers/user';
 import { validation } from '../../shared';
 import { IUser } from '../../database/models';
-import { PasswordCrypto } from '../../services/PasswordCrypto';
 
 interface IBodyProps extends Omit<IUser, 'id' | 'admin'> { }
 
@@ -31,8 +30,8 @@ export const signUp = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
                 default: "Email já cadastrado"
             }
         })
-    } 
-    const result = await  UserProviders.create(req.body );
+    }
+    const result = await UserProviders.create(req.body);
     if (result instanceof Error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             errors: {

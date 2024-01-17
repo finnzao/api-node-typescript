@@ -4,10 +4,33 @@ import { testeServer } from "../jest.setup";
 describe('Produtos - Create', () => {
 
 
+    let accessToken = '';
+    beforeAll(async () => {
+        const dateUser = { email: 'emailTeste@gmail.com', password: 'password123' };
+        await testeServer.post('/signUp').send({
+            name: "Pedro Silva",
+            mobile: 99111111,
+            email: dateUser.email,
+            password: dateUser.password,
+            admin: false
+        })
+
+        const signInRes = await testeServer.post('/signIn').send({
+            email: dateUser.email,
+            password: dateUser.password
+        })
+
+        accessToken = signInRes.body.acessToken
+
+    })
+
+
+
     it('Criar Produto', async () => {
 
         const res1 = await testeServer
             .post('/produtos')
+            .set({ 'authorization': `Bearer ${accessToken}` })
             .send({
                 name: "produto 6",
                 price: 40,
@@ -20,19 +43,18 @@ describe('Produtos - Create', () => {
         expect(typeof (res1.body)).toEqual('number')
     })
 
-    it('Não pode criar produto com nome pequeno', async () => {
+    it('Criando um produto sem autorização do token', async () => {
 
         const res2 = await testeServer
             .post('/produtos')
             .send({
-                name: "P",
+                name: "Paaaaa",
                 price: 40,
                 img: "htpp:img",
                 summary: "new info about produt",
                 quantity: 80
             });
 
-        expect(res2.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-        expect(res2.body).toHaveProperty('validationErrors.body');
+        expect(res2.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
     })
 });

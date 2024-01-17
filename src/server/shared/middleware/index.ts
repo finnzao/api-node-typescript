@@ -1,1 +1,1 @@
-export * as Validation from './Validation'
+export * from './Validation'

@@ -10,7 +10,7 @@ export const seed = async (knex: Knex) => {
     const userSeedOne = [
         {
             name: "user4",
-            mobile: "202020",
+            mobile: "759988005",
             email: "emailteste@outlook.com",
             password: "password123",
             admin: false

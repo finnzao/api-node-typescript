@@ -13,9 +13,7 @@ export async function up(knex: Knex) {
         console.log(`Create table ${ETableNames.pedido}`)
     });
 }
-/*
 
-*/
 export async function down(knex: Knex) {
     return knex.schema.dropTable(ETableNames.pedido).then(() => {
         console.log(`Delete table ${ETableNames.pedido}`)

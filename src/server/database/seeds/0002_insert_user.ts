@@ -17,7 +17,7 @@ export const seed = async (knex: Knex) => {
         },
     ]
 
-    const [{ count }] = await knex(ETableNames.pedido).count<[{ count: number }]>('* as count');
+    const [{ count }] = await knex(ETableNames.user).count<[{ count: number }]>('* as count');
 
     if (!Number.isInteger(count) || Number(count) > 0) return;
     const pedidoToInsert = userSeedOne.map(dateUser => ({
@@ -27,7 +27,7 @@ export const seed = async (knex: Knex) => {
         password: dateUser.password,
         admin: dateUser.admin
     }))
-    await knex(ETableNames.pedido).insert(pedidoToInsert)
+    await knex(ETableNames.user).insert(pedidoToInsert)
 
 
 

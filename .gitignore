@@ -1,6 +1,6 @@
 .env
 node_modules
-
+backup
 /build
 /coverage
 *.sqlite

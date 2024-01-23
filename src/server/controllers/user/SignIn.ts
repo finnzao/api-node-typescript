@@ -5,8 +5,8 @@ import * as yup from 'yup';
 import { UserProviders } from '../../database/providers/user';
 import { validation } from '../../shared';
 import { IUser } from '../../database/models';
-import { PasswordCrypto } from '../../services/PasswordCrypto';
-import { JWTService } from '../../services/JWTService';
+import { PasswordCrypto } from '../../shared/services/PasswordCrypto';
+import { JWTService } from '../../shared/services/JWTService';
 
 interface IBodyProps extends Omit<IUser, 'id' | 'name' | 'admin' | 'mobile'> { }
 

@@ -1,5 +1,6 @@
 import express from 'express';
 import { router } from './routes';
+import './shared/services/TranslationsYup'
 import cors from 'cors'
 const server = express()
 

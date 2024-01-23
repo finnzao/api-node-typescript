@@ -1,7 +1,7 @@
 import { Knex } from "../../knex";
 import { IUser } from "../../models";
 import { ETableNames } from "../../ETableNames";
-import { PasswordCrypto } from "../../../services/PasswordCrypto";
+import { PasswordCrypto } from "../../../shared/services/PasswordCrypto";
 
 export const create = async (user: Omit<IUser, 'id' | 'admin'>): Promise<number | Error> => {
     try {

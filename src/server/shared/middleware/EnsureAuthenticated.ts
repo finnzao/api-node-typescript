@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
-import { JWTService } from "../../services/JWTService";
+import { JWTService } from "../services/JWTService";
 
 
 export const ensureAuthenticated: RequestHandler = async (req, res, next) => {
